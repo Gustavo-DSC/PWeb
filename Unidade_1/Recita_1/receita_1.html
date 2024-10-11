@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações sobre Bebidas e Cafés</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: darksalmon;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        img.logo {
+            width: 500px;
+            border-radius: 40px;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 1200px; /* Largura máxima do container */
+            margin: 20px 0;
+        }
+        .table-container {
+            position: relative;
+            margin: 10px;
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1; /* Colocar a imagem atrás da tabela */
+            border-radius: 10px; /* Bordas arredondadas */
+        }
+        table {
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%; /* Largura da tabela */
+            border-radius: 10px; /* Bordas arredondadas */
+        }
+        th, td {
+            text-align: center;
+            padding: 10px; /* Espaçamento interno */
+        }
+        th {
+            background-color: #4A90E2;
+            color: white;
+        }
+        td {
+            border: 1px solid #ddd; /* Borda nas células */
+            transition: background-color 0.3s; /* Transição suave */
+        }
+        td:hover {
+            background-color: #f0f0f0; /* Cor ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" alt="Café Logo"/>
+    <h1>Bebidas e Cafés</h1>
+    <p>
+        Conheça nossa seleção de bebidas especiais<br/>
+        e informações sobre nossos cafés artesanais.<br/>
+        Temos opções deliciosas para todos os gostos!
+    </p>
+
+    <div class="container">
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Bebida</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                    <td>Café Expresso</td>
+                    <td>Café puro, intenso e preparado na hora.</td>
+                </tr>
+                <tr>
+                    <td>Capuccino</td>
+                    <td>Uma mistura deliciosa de café, leite e espuma cremosa.</td>
+                </tr>
+                <tr>
+                    <td>Latte</td>
+                    <td>Leite vaporizado com uma dose de café expresso.</td>
+                </tr>
+                <tr>
+                    <td>Mocha</td>
+                    <td>Combinação de café, chocolate e leite, com cobertura de chantilly.</td>
+                </tr>
+                <tr>
+                    <td>Chá Gelado</td>
+                    <td>Refrescante e feito com folhas de chá premium.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Preço das Bebidas</th>
+                    <th>Tamanhos Disponíveis</th>
+                </tr>
+                <tr>
+                    <td>Café Expresso - R$ 5,00</td>
+                    <td>Pequeno, Médio, Grande</td>
+                </tr>
+                <tr>
+                    <td>Capuccino - R$ 8,00</td>
+                    <td>Médio, Grande</td>
+                </tr>
+                <tr>
+                    <td>Latte - R$ 7,50</td>
+                    <td>Médio, Grande</td>
+                </tr>
+                <tr>
+                    <td>Mocha - R$ 9,00</td>
+                    <td>Médio, Grande</td>
+                </tr>
+                <tr>
+                    <td>Chá Gelado - R$ 6,00</td>
+                    <td>Médio, Grande</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
