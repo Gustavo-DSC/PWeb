@@ -1,0 +1,57 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-image: url('https://img.freepik.com/premium-photo/cup-hot-coffee-latte-table-cafe-with-shallow-depth-field_258743-129.jpg');
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(5px); /* Efeito de blur leve */
+}
+
+img {
+    width: 500px;
+    border-radius: 40px;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1200px; /* Largura máxima do container */
+    margin: 20px 0;
+}
+
+table {
+    border-collapse: collapse;
+    background-image: url('https://img.freepik.com/free-vector/restaurant-mural-wallpaper_52683-47493.jpg'); /* Imagem de fundo da tabela */
+    background-size: cover; /* Cobrir toda a tabela */
+    background-position: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 45%; /* Largura da tabela */
+}
+
+th, td {
+    text-align: center;
+    padding: 10px; /* Espaçamento interno */
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semitransparente nas células */
+}
+
+th {
+    background-color: #4A90E2;
+    color: white;
+}
+
+td {
+    border: 1px solid #ddd; /* Borda nas células */
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+td:hover {
+    background-color: #f0f0f0; /* Cor ao passar o mouse */
+}
