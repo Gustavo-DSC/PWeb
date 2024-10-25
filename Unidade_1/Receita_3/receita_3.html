@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cervejas Especiais</title>
+    <link rel="stylesheet" href="receita_3.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="header">Seleção de Cervejas</h1>
+
+        <div id="beerDisplay" class="beer-box"></div>
+
+        <button id="toggleButton" class="toggle-btn">Mostrar Guinness</button>
+    </div>
+
+</body>
+
+<script>
+    // Função para alternar a exibição da cerveja
+    function toggleBeer() {
+        const beerDiv = document.getElementById("beerDisplay");
+        const button = document.getElementById("toggleButton");
+
+        if (beerDiv.classList.contains('visible')) {
+            beerDiv.style.opacity = 0;
+            setTimeout(() => {
+                beerDiv.innerHTML = ""; 
+                beerDiv.classList.remove('visible');
+                button.textContent = "Mostrar Guinness";
+            }, 500); // Duração do fade-out
+        } else {
+            beerDiv.innerHTML = "<h2>Guinness</h2><p>A cerveja stout mais famosa do mundo.</p>";
+            beerDiv.classList.add('visible');
+            setTimeout(() => {
+                beerDiv.style.opacity = 1;
+            }, 50); // Curto atraso para iniciar o fade-in
+            button.textContent = "Ocultar Guinness";
+        }
+    }
+
+    // Evento de clique para o botão
+    document.getElementById("toggleButton").addEventListener("click", toggleBeer);
+</script>
+
+</html>
