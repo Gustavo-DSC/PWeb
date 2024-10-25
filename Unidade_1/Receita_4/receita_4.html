@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações sobre Café</title>
+    <link rel="stylesheet" href="receita_4.css">
+</head>
+
+<body>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" alt="Café" />
+    <div class="description">
+        <h1>Informações sobre Café</h1>
+        <p>
+            Descubra mais sobre as bebidas de café<br />
+            e os benefícios de uma boa xícara<br />
+            <span class="mote">para sua energia e saúde.</span>
+        </p>
+    </div>
+
+    <div class="container">
+        <table id="coffeeTable">
+            <thead>
+                <tr>
+                    <th>Tipo de Café</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="https://www.youtube.com/shorts/lVWWkYEwQXY?feature=share" target="_blank">Expresso</a></td>
+                    <td>Café puro e concentrado, feito sob alta pressão.</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.youtube.com/shorts/6QpxAL2XZ6I?feature=share" target="_blank">Capuccino</a></td>
+                    <td>Mistura de café, leite vaporizado e espuma cremosa.</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.youtube.com/shorts/9MkYCA1GGms?feature=share" target="_blank">Latte</a></td>
+                    <td>Café com uma dose maior de leite vaporizado.</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.youtube.com/shorts/RzJCFo-XRWw?feature=share" target="_blank">Mocha</a></td>
+                    <td>Combinação de café, leite e chocolate, com cobertura de chantilly.</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.youtube.com/shorts/LaieRea0buU?feature=share" target="_blank">Café Gelado</a></td>
+                    <td>Café resfriado com gelo e servido em um copo longo.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="buttons">
+            <button id="sortButton" class="toggle-btn">Mostrar cafés ordenados</button>
+            <button id="shuffleButton" class="toggle-btn">Embaralhar cafés</button>
+        </div>
+    </div>
+
+
+    <script>
+        let cafes = [
+            {
+                nome: 'Expresso',
+                descricao: 'Café puro e concentrado, feito sob alta pressão.',
+                link: 'https://www.youtube.com/shorts/lVWWkYEwQXY?feature=share'
+            },
+            {
+                nome: 'Capuccino',
+                descricao: 'Mistura de café, leite vaporizado e espuma cremosa.',
+                link: 'https://www.youtube.com/shorts/6QpxAL2XZ6I?feature=share'
+            },
+            {
+                nome: 'Latte',
+                descricao: 'Café com uma dose maior de leite vaporizado.',
+                link: 'https://www.youtube.com/shorts/9MkYCA1GGms?feature=share'
+            },
+            {
+                nome: 'Mocha',
+                descricao: 'Combinação de café, leite e chocolate, com cobertura de chantilly.',
+                link: 'https://www.youtube.com/shorts/RzJCFo-XRWw?feature=share'
+            },
+            {
+                nome: 'Café Gelado',
+                descricao: 'Café resfriado com gelo e servido em um copo longo.',
+                link: 'https://www.youtube.com/shorts/LaieRea0buU?feature=share'
+            }
+        ];
+
+        function atualizarTabela() {
+            const tbody = document.querySelector("#coffeeTable tbody");
+            tbody.innerHTML = ""; // Limpar tabela
+            cafes.forEach(cafe => {
+                tbody.innerHTML += `
+                <tr>
+                    <td><a href="${cafe.link}" target="_blank">${cafe.nome}</a></td>
+                    <td>${cafe.descricao}</td>
+                </tr>`;
+            });
+        }
+
+        // Função para ordenar a lista de cafés
+        function ordenarCafes() {
+            cafes.sort((a, b) => a.nome.localeCompare(b.nome)); // Ordenar alfabeticamente
+            atualizarTabela(); // Atualizar a exibição da tabela
+        }
+
+        // Função para embaralhar a lista de cafés
+        function embaralharCafes() {
+            cafes.sort(() => Math.random() - 0.5); // Embaralhar a lista
+            atualizarTabela(); // Atualizar a exibição da tabela
+        }
+
+        // Eventos dos botões
+        document.getElementById("sortButton").addEventListener("click", ordenarCafes);
+        document.getElementById("shuffleButton").addEventListener("click", embaralharCafes);
+
+        // Inicializar tabela
+        atualizarTabela();
+    </script>
+</body>
+
+</html>
