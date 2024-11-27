@@ -9,65 +9,99 @@
 </head>
 
 <body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" alt="Café"
+            class="header-image">
+        <div class="description">
+            <h1>Informações sobre Cafés</h1>
+            <p>Descubra mais sobre diferentes tipos de café e aproveite uma boa xícara para <span
+                    class="mote">animar o seu dia!</span></p>
+        </div>
+    </header>
 
-    <h1>Cafés do Dia</h1>
-    <div class="container">
-        <table id="coffee-table">
+    <main class="container">
+        <table id="coffeeTable">
             <thead>
                 <tr>
                     <th>Nome</th>
                     <th>Descrição</th>
-                    <th>Imagem</th>
                     <th>Ingredientes</th>
+                    <th>Imagem</th>
                 </tr>
             </thead>
-            <tbody id="coffee-list"></tbody>
+            <tbody>
+                <!-- A tabela será preenchida dinamicamente -->
+            </tbody>
         </table>
-    </div>
 
-    <div class="buttons">
-        <button class="toggle-btn" id="load-more">Buscar Café</button>
-    </div>
+        <div class="buttons">
+            <button id="fetchCoffees" class="toggle-btn">Buscar Cafés</button>
+        </div>
+    </main>
 
     <script>
-        // Função para buscar cafés
-        function fetchCoffees() {
-            // API de cafés
-            const apiUrl = 'https://api.sampleapis.com/coffee/hot?size=3';
+        const API_URL = "https://api.sampleapis.com/coffee/hot";
+        let index = 0;
 
-            fetch(apiUrl)
+        const buscarCafes = () => {
+            return fetch(API_URL)
                 .then(response => {
-                    // Verificar se a resposta foi bem-sucedida (status 200)
                     if (!response.ok) {
-                        throw new Error(`Erro na resposta: ${response.statusText}`);
+                        throw new Error("Erro ao buscar dados da API");
                     }
-                    return response.json(); // Retorna a resposta em formato JSON
+                    return response.json();
                 })
-                .then(data => {
-                    console.log('Dados recebidos:', data); // Log para depuração
-                    const coffeeList = document.getElementById('coffee-list');
-                    coffeeList.innerHTML = ''; // Limpar a lista antes de adicionar os novos itens
-                    
-                    data.forEach(coffee => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${coffee.title}</td>
-                            <td class="description">${coffee.description}</td>
-                            <td><img class="coffee-img" src="${coffee.image}" alt="${coffee.title}"></td>
-                            <td>${coffee.ingredients.join(', ')}</td>
-                        `;
-                        coffeeList.appendChild(row);
-                    });
-                })
+                .then(cafes => cafes.slice(index, index + 3))
                 .catch(error => {
-                    console.error('Erro ao buscar cafés:', error); // Log do erro
-                    alert('Ocorreu um erro ao buscar os cafés. Veja o console para mais detalhes.');
+                    console.error(error);
+                    alert("Erro ao buscar informações sobre cafés.");
+                    return [];
                 });
-        }
+        };
 
-        // Event listener para o botão "Buscar Café"
-        document.getElementById('load-more').addEventListener('click', fetchCoffees);
+        const atualizarTabela = (cafes) => {
+            const tbody = document.querySelector("#coffeeTable tbody");
+
+            cafes.forEach(cafe => {
+                const row = document.createElement("tr");
+
+                const nomeCell = document.createElement("td");
+                nomeCell.textContent = cafe.title || "Desconhecido";
+
+                const descricaoCell = document.createElement("td");
+                descricaoCell.textContent = cafe.description || "Sem descrição disponível";
+
+                const ingredientesCell = document.createElement("td");
+                ingredientesCell.textContent = cafe.ingredients ? cafe.ingredients.join(", ") : "N/A";
+
+                const imagemCell = document.createElement("td");
+                const img = document.createElement("img");
+                img.src = cafe.image;
+                img.alt = cafe.title || "Imagem de café";
+                img.className = "coffee-img";
+                imagemCell.appendChild(img);
+
+                row.appendChild(nomeCell);
+                row.appendChild(descricaoCell);
+                row.appendChild(ingredientesCell);
+                row.appendChild(imagemCell);
+
+                tbody.appendChild(row);
+            });
+        };
+
+        document.getElementById("fetchCoffees").addEventListener("click", () => {
+            buscarCafes().then(cafes => {
+                atualizarTabela(cafes);
+                index += 3;
+            });
+        });
+
+        buscarCafes().then(cafes => {
+            atualizarTabela(cafes);
+            index += 3;
+        });
     </script>
-
 </body>
+
 </html>
