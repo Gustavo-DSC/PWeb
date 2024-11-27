@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações sobre Café</title>
+    <link rel="stylesheet" href="receita_7.css">
+</head>
+
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" alt="Café"
+            class="header-image">
+        <div class="description">
+            <h1>Informações sobre Cafés</h1>
+            <p>Descubra mais sobre diferentes tipos de café e aproveite uma boa xícara para <span
+                    class="mote">animar o seu dia!</span></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <table id="coffeeTable">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Ingredientes</th>
+                    <th>Imagem</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- A tabela será preenchida dinamicamente -->
+            </tbody>
+        </table>
+
+        <div class="buttons">
+            <button id="fetchCoffees" class="toggle-btn">Buscar Cafés</button>
+        </div>
+    </main>
+
+    <script>
+        const API_URL = "https://api.sampleapis.com/coffee/hot";
+        let index = 0; 
+
+        const buscarCafes = async () => {
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error("Erro ao buscar dados da API");
+                const cafes = await response.json();
+                return cafes.slice(index, index + 3); 
+            } catch (error) {
+                console.error(error);
+                alert("Erro ao buscar informações sobre cafés.");
+                return [];
+            }
+        };
+
+        const atualizarTabela = (cafes) => {
+            const tbody = document.querySelector("#coffeeTable tbody");
+
+            cafes.forEach(cafe => {
+                const row = document.createElement("tr");
+
+                const nomeCell = document.createElement("td");
+                nomeCell.textContent = cafe.title || "Desconhecido";
+
+                const descricaoCell = document.createElement("td");
+                descricaoCell.textContent = cafe.description || "Sem descrição disponível";
+
+                const ingredientesCell = document.createElement("td");
+                ingredientesCell.textContent = cafe.ingredients ? cafe.ingredients.join(", ") : "N/A";
+
+                const imagemCell = document.createElement("td");
+                const img = document.createElement("img");
+                img.src = cafe.image;
+                img.alt = cafe.title || "Imagem de café";
+                img.className = "coffee-img";
+                imagemCell.appendChild(img);
+
+                row.appendChild(nomeCell);
+                row.appendChild(descricaoCell);
+                row.appendChild(ingredientesCell);
+                row.appendChild(imagemCell);
+
+                tbody.appendChild(row);
+            });
+        };
+
+        document.getElementById("fetchCoffees").addEventListener("click", async () => {
+            const cafes = await buscarCafes();
+            atualizarTabela(cafes);
+            index += 3;
+        });
+
+        (async () => {
+            const cafesIniciais = await buscarCafes();
+            atualizarTabela(cafesIniciais);
+            index += 3; 
+        })();
+    </script>
+</body>
+
+</html>
