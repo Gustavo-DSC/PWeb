@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações sobre Café</title>
+    <link rel="stylesheet" href="receita_8.css">
+</head>
+
+<body>
+
+    <h1>Cafés do Dia</h1>
+    <div class="container">
+        <table id="coffee-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Imagem</th>
+                    <th>Ingredientes</th>
+                </tr>
+            </thead>
+            <tbody id="coffee-list"></tbody>
+        </table>
+    </div>
+
+    <div class="buttons">
+        <button class="toggle-btn" id="load-more">Buscar Café</button>
+    </div>
+
+    <script>
+        // Função para buscar cafés
+        function fetchCoffees() {
+            // API de cafés
+            const apiUrl = 'https://api.sampleapis.com/coffee/hot?size=3';
+
+            fetch(apiUrl)
+                .then(response => {
+                    // Verificar se a resposta foi bem-sucedida (status 200)
+                    if (!response.ok) {
+                        throw new Error(`Erro na resposta: ${response.statusText}`);
+                    }
+                    return response.json(); // Retorna a resposta em formato JSON
+                })
+                .then(data => {
+                    console.log('Dados recebidos:', data); // Log para depuração
+                    const coffeeList = document.getElementById('coffee-list');
+                    coffeeList.innerHTML = ''; // Limpar a lista antes de adicionar os novos itens
+                    
+                    data.forEach(coffee => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${coffee.title}</td>
+                            <td class="description">${coffee.description}</td>
+                            <td><img class="coffee-img" src="${coffee.image}" alt="${coffee.title}"></td>
+                            <td>${coffee.ingredients.join(', ')}</td>
+                        `;
+                        coffeeList.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar cafés:', error); // Log do erro
+                    alert('Ocorreu um erro ao buscar os cafés. Veja o console para mais detalhes.');
+                });
+        }
+
+        // Event listener para o botão "Buscar Café"
+        document.getElementById('load-more').addEventListener('click', fetchCoffees);
+    </script>
+
+</body>
+</html>
