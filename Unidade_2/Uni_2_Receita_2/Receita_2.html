@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Um - Tabela de Estados Corruptos</title>
+  <link rel="stylesheet" href="Receita_2.css">
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="libs/react.js"></script>
+  <script src="libs/react-dom.js"></script>
+  <script src="libs/babel.js"></script>
+
+  <script type="text/babel">
+    function Cabecalho() {
+      return <h1>Minha Tabela de Estados Mais Corruptos</h1>;
+    }
+
+    function TabelaCorruptos() {
+      const estados = [
+        { nome: "São Paulo", indice: 5.2, ano: 2023 },
+        { nome: "Rio de Janeiro", indice: 7.8, ano: 2023 },
+        { nome: "Minas Gerais", indice: 6.5, ano: 2023 },
+        { nome: "Paraná", indice: 4.8, ano: 2023 },
+        { nome: "Bahia", indice: 5.9, ano: 2023 },
+        { nome: "Ceará", indice: 6.2, ano: 2023 },
+        { nome: "Pernambuco", indice: 6.3, ano: 2023 },
+        { nome: "Amazonas", indice: 7.1, ano: 2023 },
+        { nome: "Maranhão", indice: 8.0, ano: 2023 },
+        { nome: "Rio Grande do Norte", indice: 6.4, ano: 2023 }
+      ];
+
+      return (
+        <table id="tabela" border="1">
+          <thead>
+            <tr>
+              <th>Estado</th>
+              <th>Índice de Corrupção</th>
+              <th>Ano</th>
+            </tr>
+          </thead>
+          <tbody>
+            {estados.map((estado, index) => (
+              <tr key={index}>
+                <td>{estado.nome}</td>
+                <td>{estado.indice}</td>
+                <td>{estado.ano}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    }
+
+    class App extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { mostrarTabela: false }; 
+      }
+
+      toggleTabela = () => {
+        this.setState({ mostrarTabela: !this.state.mostrarTabela });
+      };
+
+      render() {
+        return (
+          <div>
+            <Cabecalho />
+            <button onClick={this.toggleTabela}>
+              {this.state.mostrarTabela ? 'Esconder Tabela' : 'Mostrar Tabela'}
+            </button>
+            {this.state.mostrarTabela && <TabelaCorruptos />}
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById("app"));
+  </script>
+</body>
+</html>
