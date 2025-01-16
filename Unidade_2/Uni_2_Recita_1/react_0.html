@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ReactZero</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <!-- Importando as bibliotecas -->
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+
+    <script>
+        // Renderizando o primeiro elemento React com a tabela dos estados mais corruptos
+        ReactDOM.render(
+            React.createElement(
+                'div',
+                null,
+                React.createElement(
+                    'h1',
+                    { id: 'my-heading' },
+                    React.createElement(
+                        'span',
+                        null,
+                        'React ',
+                        React.createElement('em', null, 'é muito')
+                    ),
+                    ' massa!'
+                ),
+                React.createElement(
+                    'table',
+                    { border: '1', style: { width: '100%', textAlign: 'center' } },
+                    React.createElement(
+                        'thead',
+                        null,
+                        React.createElement(
+                            'tr',
+                            null,
+                            React.createElement('th', null, 'Estado'),
+                            React.createElement('th', null, 'Índice de Corrupção'),
+                            React.createElement('th', null, 'Ano')
+                        )
+                    ),
+                    React.createElement(
+                        'tbody',
+                        null,
+                        React.createElement(
+                            'tr',
+                            null,
+                            React.createElement('td', null, 'São Paulo'),
+                            React.createElement('td', null, '5.2'),
+                            React.createElement('td', null, '2023')
+                        ),
+                        React.createElement(
+                            'tr',
+                            null,
+                            React.createElement('td', null, 'Rio de Janeiro'),
+                            React.createElement('td', null, '7.8'),
+                            React.createElement('td', null, '2023')
+                        ),
+                        React.createElement(
+                            'tr',
+                            null,
+                            React.createElement('td', null, 'Minas Gerais'),
+                            React.createElement('td', null, '6.5'),
+                            React.createElement('td', null, '2023')
+                        ),
+                        React.createElement(
+                            'tr',
+                            null,
+                            React.createElement('td', null, 'Paraná'),
+                            React.createElement('td', null, '4.8'),
+                            React.createElement('td', null, '2023')
+                        ),
+                        React.createElement(
+                            'tr',
+                            null,
+                            React.createElement('td', null, 'Bahia'),
+                            React.createElement('td', null, '5.9'),
+                            React.createElement('td', null, '2023')
+                        ),
+                        React.createElement(
+                            'tr',
+                            null,
+                            React.createElement('td', null, 'Ceará'),
+                            React.createElement('td', null, '6.2'),
+                            React.createElement('td', null, '2023')
+                        ),
+                        React.createElement(
+                            'tr',
+                            null,
+                            React.createElement('td', null, 'Pernambuco'),
+                            React.createElement('td', null, '6.3'),
+                            React.createElement('td', null, '2023')
+                        ),
+                        React.createElement(
+                            'tr',
+                            null,
+                            React.createElement('td', null, 'Amazonas'),
+                            React.createElement('td', null, '7.1'),
+                            React.createElement('td', null, '2023')
+                        ),
+                        React.createElement(
+                            'tr',
+                            null,
+                            React.createElement('td', null, 'Maranhão'),
+                            React.createElement('td', null, '8.0'),
+                            React.createElement('td', null, '2023')
+                        ),
+                        React.createElement(
+                            'tr',
+                            null,
+                            React.createElement('td', null, 'Rio Grande do Norte'),
+                            React.createElement('td', null, '6.4'),
+                            React.createElement('td', null, '2023')
+                        )
+                    )
+                )
+            ),
+            document.getElementById('app')
+        );
+    </script>
+</body>
+
+</html>
