@@ -1,0 +1,100 @@
+body {
+    background-color: #111; 
+    color: white; 
+    font-family: sans-serif; 
+    margin: 0;
+  }
+  
+  .movie-grid {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    grid-gap: 20px; 
+    padding: 20px;
+    max-width: 1200px; 
+    margin: 20px auto; 
+  }
+  
+  .movie-card {
+    background-color: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    transition: transform 0.2s; 
+  }
+  
+  .movie-card:hover { 
+      transform: scale(1.05); 
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); 
+  }
+  
+  .movie-poster {
+    width: 100%;
+    height: 70%;
+    display: block; 
+    object-fit: cover; 
+  }
+  
+  .movie-info {
+    padding: 10px;
+    text-align: left; 
+  }
+  
+  .movie-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .movie-year {
+    font-size: 14px;
+    color: #999;
+  }
+  
+  .error-message {
+      color: white;
+      text-align: center;
+      padding: 20px;
+  }
+
+
+  .search-container {
+    display: flex; 
+    width: 100%; 
+    max-width: 600px;
+    margin: 20px auto; 
+    border-radius: 5px;
+    overflow: hidden; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.search-input {
+    flex-grow: 1; 
+    padding: 10px 15px;
+    border: none;
+    background-color: #333; 
+    color: white;
+    font-size: 16px;
+    outline: none; 
+    border-radius: 5px 0 0 5px; 
+}
+
+.search-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #e50914; 
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0; 
+    transition: background-color 0.3s ease; 
+}
+
+.search-button:hover {
+    background-color: #b80710; 
+}
+
+.search-input::placeholder {
+    color: #777;
+}
+
+
